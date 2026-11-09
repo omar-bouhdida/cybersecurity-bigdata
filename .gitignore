@@ -1,6 +1,25 @@
+# Environment variables and secrets
 .env
+
+# Dataset files
 data/raw/*
 data/processed/*
+
+# Logs
 *.log
+
+# Keep the synthetic sample used for Flume testing
+!data/sample-logs/
+!data/sample-logs/auth.log
+
+# Python
 __pycache__/
 *.pyc
+
+# Flume downloaded distribution
+flume/downloads/
+
+# Flume runtime state and generated output
+flume/state/
+flume/logs/
+flume/output/

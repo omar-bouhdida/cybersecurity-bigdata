@@ -23,5 +23,14 @@ services:
       - kafka_data:/var/lib/kafka/data
     restart: unless-stopped
 
+  flume:
+    image: cybersecurity-flume:1.11.0
+    container_name: bigdata-flume
+    volumes:
+      - ./flume/conf:/opt/flume/conf:ro
+      - ./data/sample-logs:/opt/flume/input:ro
+      - ./flume/state:/opt/flume/data
+    restart: unless-stopped
+
 volumes:
   kafka_data:
