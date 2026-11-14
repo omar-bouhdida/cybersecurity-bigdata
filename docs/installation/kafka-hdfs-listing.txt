@@ -1,0 +1,4 @@
+drwxr-xr-x   - vboxuser supergroup          0 2026-11-14 23:12 /cybersecurity/raw/kafka/2026-11-14
+-rw-r--r--   1 vboxuser supergroup         86 2026-11-14 23:09 /cybersecurity/raw/kafka/2026-11-14/security-logs-230856054714.jsonl
+-rw-r--r--   1 vboxuser supergroup        992 2026-11-14 23:11 /cybersecurity/raw/kafka/2026-11-14/security-logs-231121723132.jsonl
+-rw-r--r--   1 vboxuser supergroup        495 2026-11-14 23:12 /cybersecurity/raw/kafka/2026-11-14/security-logs-231237577999.jsonl
