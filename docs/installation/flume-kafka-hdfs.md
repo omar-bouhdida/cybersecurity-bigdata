@@ -79,3 +79,4 @@ Arreter : Ctrl+C (arret propre, le dernier lot est ecrit), puis :
 - Si l'ecriture HDFS echoue, le lot est conserve en memoire et reessaye ; il est perdu
   si le processus est tue.
 - Donnees de test synthetiques, pas CIC-IDS2017.
+- Flume (Taildir) : si auth.log est remplace (git checkout change l inode), le fichier est relu depuis le debut et les lignes sont dupliquees dans HDFS (voir flume-hdfs-content.txt).
