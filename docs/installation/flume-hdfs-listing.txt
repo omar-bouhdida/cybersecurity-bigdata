@@ -1,0 +1,4 @@
+drwxr-xr-x   - vboxuser supergroup          0 2026-11-14 22:47 /cybersecurity/raw/flume/2026-11-14
+-rw-r--r--   1 vboxuser supergroup        892 2026-11-14 22:42 /cybersecurity/raw/flume/2026-11-14/auth.1794696087296
+-rw-r--r--   1 vboxuser supergroup        111 2026-11-14 22:45 /cybersecurity/raw/flume/2026-11-14/auth.1794696296806
+-rw-r--r--   1 vboxuser supergroup        892 2026-11-14 22:47 /cybersecurity/raw/flume/2026-11-14/auth.1794696417177
