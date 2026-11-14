@@ -26,10 +26,20 @@ services:
   flume:
     image: cybersecurity-flume:1.11.0
     container_name: bigdata-flume
+    network_mode: host
+    environment:
+      HADOOP_HOME: /opt/hadoop
+      HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+      HADOOP_USER_NAME: vboxuser
+    command:
+      - sh
+      - -c
+      - "mkdir -p /usr/lib/jvm && ln -sfn /opt/java/openjdk /usr/lib/jvm/java-11-openjdk-amd64 && exec flume-ng agent --conf /opt/flume/conf --conf-file /opt/flume/conf/flume.conf --name agent -Xms256m -Xmx512m -Dflume.root.logger=INFO,console"
     volumes:
       - ./flume/conf:/opt/flume/conf:ro
       - ./data/sample-logs:/opt/flume/input:ro
       - ./flume/state:/opt/flume/data
+      - /opt/hadoop:/opt/hadoop:ro
     restart: unless-stopped
 
 volumes:
