@@ -1,0 +1,9 @@
+{"timestamp": "2026-11-09T16:30:00", "source_ip": "192.168.1.100", "event_type": "FAILED_LOGIN", "username": "admin", "severity": "HIGH"}
+{"timestamp": "2026-11-09T16:01:00", "source_ip": "192.168.1.105", "event_type": "PORT_SCAN", "username": "unknown", "severity": "CRITICAL"}
+{"timestamp": "2026-11-09T16:02:00", "source_ip": "192.168.1.110", "event_type": "SUCCESSFUL_LOGIN", "username": "omar", "severity": "LOW"}
+{"event_id": "KAFKA-HDFS-001", "timestamp": "2026-11-15T15:30:00Z", "source_ip": "192.0.2.55", "destination_ip": "192.0.2.10", "event_type": "FAILED_LOGIN", "severity": "HIGH", "description": "Test event for Kafka to HDFS integration", "source_system": "ssh"}
+{"event_id": "STREAM-001", "event_type": "FAILED_LOGIN", "severity": "HIGH", "source_ip": "192.0.2.101", "timestamp": "2026-11-15T16:30:00Z"}
+{"event_id": "STREAM-TEST-101", "event_type": "FAILED_LOGIN", "severity": "HIGH", "source_ip": "192.0.2.101", "timestamp": "2026-11-15T16:30:00Z"}
+{"event_id": "STREAM-TEST-102", "event_type": "PORT_SCAN", "severity": "CRITICAL", "source_ip": "192.0.2.102", "timestamp": "2026-11-15T16:31:00Z"}
+{"event_id": "FINAL-TEST-001", "event_type": "BRUTE_FORCE", "severity": "CRITICAL", "source_ip": "192.0.2.201"}
+{"event_id": "FINAL-TEST-002", "event_type": "SUSPICIOUS_TRAFFIC", "severity": "HIGH", "source_ip": "192.0.2.202"}

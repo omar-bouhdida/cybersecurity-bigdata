@@ -1,0 +1,7 @@
+drwxr-xr-x   - vboxuser supergroup          0 2026-11-15 15:13 /cybersecurity/raw/kafka/year=2026
+drwxr-xr-x   - vboxuser supergroup          0 2026-11-15 15:13 /cybersecurity/raw/kafka/year=2026/month=11
+drwxr-xr-x   - vboxuser supergroup          0 2026-11-15 16:52 /cybersecurity/raw/kafka/year=2026/month=11/day=15
+-rw-r--r--   1 vboxuser supergroup        679 2026-11-15 15:13 /cybersecurity/raw/kafka/year=2026/month=11/day=15/security-events-20261115_151349_553061.jsonl
+-rw-r--r--   1 vboxuser supergroup        142 2026-11-15 15:19 /cybersecurity/raw/kafka/year=2026/month=11/day=15/security-events-20261115_151955_674952.jsonl
+-rw-r--r--   1 vboxuser supergroup        295 2026-11-15 15:22 /cybersecurity/raw/kafka/year=2026/month=11/day=15/security-events-20261115_152219_714229.jsonl
+-rw-r--r--   1 vboxuser supergroup        227 2026-11-15 16:52 /cybersecurity/raw/kafka/year=2026/month=11/day=15/security-events-20261115_165250_320783.jsonl
