@@ -26,10 +26,18 @@ services:
   flume:
     image: cybersecurity-flume:1.11.0
     container_name: bigdata-flume
+    network_mode: host
+    user: "1000:1000"
+    environment:
+      HADOOP_HOME: /opt/hadoop
+      HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+      HADOOP_COMMON_LIB_NATIVE_DIR: /opt/hadoop/lib/native
+      HADOOP_USER_NAME: vboxuser
     volumes:
       - ./flume/conf:/opt/flume/conf:ro
       - ./data/sample-logs:/opt/flume/input:ro
       - ./flume/state:/opt/flume/data
+      - /opt/hadoop:/opt/hadoop:ro
     restart: unless-stopped
 
 volumes:

@@ -23,3 +23,7 @@ flume/downloads/
 flume/state/
 flume/logs/
 flume/output/
+
+# Backup files
+*.backup
+*.bak

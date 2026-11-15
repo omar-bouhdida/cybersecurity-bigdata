@@ -1,0 +1,4 @@
+drwxr-xr-x   - vboxuser supergroup          0 2026-11-15 14:30 /cybersecurity/raw/flume/2026
+drwxr-xr-x   - vboxuser supergroup          0 2026-11-15 14:30 /cybersecurity/raw/flume/2026/11
+drwxr-xr-x   - vboxuser supergroup          0 2026-11-15 14:31 /cybersecurity/raw/flume/2026/11/15
+-rw-r--r--   1 vboxuser supergroup         95 2026-11-15 14:31 /cybersecurity/raw/flume/2026/11/15/auth-events.1794753002576.log
