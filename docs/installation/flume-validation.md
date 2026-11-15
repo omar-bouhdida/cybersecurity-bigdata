@@ -1,62 +1,108 @@
-# Apache Flume Validation
+# Apache Flume Installation and HDFS Integration Validation
 
 ## 1. Environment
 
 - Operating system: Ubuntu 26.04.1 LTS
 - Java runtime: Eclipse Temurin OpenJDK 11
 - Apache Flume: 1.11.0
+- Apache Hadoop: 3.3.6
 - Deployment: Docker
+- HDFS NameNode: `hdfs://localhost:9000`
 
 ## 2. Architecture
 
-The standalone ingestion pipeline consists of:
+The implemented ingestion pipeline is:
 
-Synthetic Linux authentication logs → Taildir Source → File Channel → Logger Sink
+Synthetic Linux authentication logs → Taildir Source → File Channel → HDFS Sink
+
+Flume monitors authentication log files, buffers collected events through a persistent File Channel, and writes them into Hadoop Distributed File System.
 
 ## 3. Installation
 
 1. Downloaded the official Apache Flume 1.11.0 binary distribution.
 2. Verified the downloaded archive using its SHA-512 checksum.
-3. Extracted the binary distribution.
-4. Created a Docker image using Eclipse Temurin 11 JRE.
-5. Configured the Flume agent.
-6. Configured Log4j2 to send application logs to the container console.
+3. Built a Docker image using Eclipse Temurin 11 JRE.
+4. Configured the Flume agent.
+5. Integrated the Hadoop configuration and libraries.
+6. Configured the HDFS Sink to write events into HDFS.
+
+Docker image:
+
+`cybersecurity-flume:1.11.0`
+
+Container:
+
+`bigdata-flume`
 
 ## 4. Flume Components
 
 | Component | Configuration | Purpose |
 |---|---|---|
 | Source | TAILDIR | Monitors authentication log files |
-| Channel | FILE | Buffers events using disk storage |
-| Sink | LOGGER | Outputs collected events to the console |
+| Channel | FILE | Buffers events using persistent disk storage |
+| Sink | HDFS | Persists collected events in HDFS |
 
 Input file: `/opt/flume/input/auth.log`
 
 Position file: `/opt/flume/data/taildir_position.json`
 
-## 5. Validation
+Channel checkpoint: `/opt/flume/data/checkpoint`
 
-The initial synthetic authentication log contained eight records.
+Channel data directory: `/opt/flume/data/data`
+
+## 5. HDFS Configuration
+
+Destination:
+
+`/cybersecurity/raw/flume/`
+
+The output directory uses date-based partitioning:
+
+`YYYY/MM/DD/`
+
+Output files use the `auth-events` prefix and `.log` suffix.
+
+The HDFS Sink is configured to roll files periodically and write collected events in text format.
+
+## 6. Validation Procedure
 
 The following tests were performed:
 
-- Confirmed that the input file contained eight lines.
-- Confirmed that Taildir tracked the file at byte position 778.
-- Confirmed successful initialization of the source, channel, and sink.
-- Appended a ninth synthetic authentication event.
-- Confirmed that Taildir advanced its position to byte 892.
-- Confirmed that Logger Sink emitted the newly appended event.
-- Confirmed that the Flume Docker container remained running.
+- Confirmed successful startup of the Flume container.
+- Confirmed successful initialization of the Taildir Source.
+- Confirmed successful initialization of the HDFS Sink.
+- Verified that the input authentication log was monitored.
+- Appended a synthetic authentication event.
+- Confirmed that Flume collected the new event.
+- Confirmed that the HDFS Sink created an output file.
+- Confirmed that the temporary HDFS file was closed and renamed.
+- Read the resulting HDFS file to verify persisted content.
 
-## 6. Result
+## 7. Validation Result
 
-**PASS: Standalone Flume ingestion successfully validated.**
+**PASS: Flume-to-HDFS integration successfully validated.**
 
-The test demonstrates the collection of authentication log events through the Taildir Source, buffering through the File Channel, and delivery to the Logger Sink.
+A synthetic authentication event was collected from the monitored log file, transferred through the Flume File Channel, and successfully persisted in HDFS.
 
-## 7. Limitations and Future Work
+## 8. Evidence
 
-- The current Logger Sink is used for standalone validation.
-- Integration with HDFS is planned for the next implementation stage.
-- The authentication logs are synthetic test data and are not part of CIC-IDS2017.
-- CIC-IDS2017 will be handled separately as the network traffic analysis dataset.
+Historical and current validation evidence is maintained in:
+
+`docs/evidence/flume/`
+
+Additional validation evidence contributed by Mohamed Ali is maintained separately in the installation documentation.
+
+## 9. Limitations
+
+- The authentication events are synthetic demonstration data.
+- They are not part of the CIC-IDS2017 dataset.
+- The demonstration uses a single Flume agent.
+- HDFS currently operates with one DataNode and replication factor 1.
+- Taildir file replacement and inode changes can cause duplicate event ingestion in certain circumstances.
+- The demonstration is intended to validate ingestion functionality, not production-scale reliability.
+
+## 10. Conclusion
+
+Apache Flume 1.11.0 was successfully deployed using Docker and integrated with Hadoop HDFS.
+
+The implemented pipeline demonstrates the collection, buffering, and persistent storage of authentication log events using Apache Flume.
