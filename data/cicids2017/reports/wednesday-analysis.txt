@@ -1,0 +1,25 @@
+CIC-IDS2017 DATASET ANALYSIS
+=============================================
+Dataset: Wednesday-workingHours.pcap_ISCX.csv
+Total records: 692,703
+Total traffic classes: 6
+
+TRAFFIC DISTRIBUTION
+---------------------------------------------
+BENIGN: 440,031 (63.52%)
+DoS Hulk: 231,073 (33.36%)
+DoS GoldenEye: 10,293 (1.49%)
+DoS slowloris: 5,796 (0.84%)
+DoS Slowhttptest: 5,499 (0.79%)
+Heartbleed: 11 (0.00%)
+
+MISSING VALUES
+---------------------------------------------
+Total missing cells: 1,008
+Flow Bytes/s: 1,008
+
+DUPLICATES
+---------------------------------------------
+Duplicates within individual chunks: 67,940
+
+Note: Duplicate detection is limited to individual chunks.

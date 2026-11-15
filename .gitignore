@@ -27,3 +27,7 @@ flume/output/
 # Backup files
 *.backup
 *.bak
+
+# CIC-IDS2017 datasets (stored locally and in HDFS)
+data/cicids2017/raw/
+data/cicids2017/processed/

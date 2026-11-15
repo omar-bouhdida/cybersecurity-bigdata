@@ -1,0 +1,34 @@
+CIC-IDS2017 - WEDNESDAY CLEANING REPORT
+========================================
+
+Input dataset:
+Wednesday-workingHours.pcap_ISCX.csv
+
+Output dataset:
+Wednesday-cleaned.csv
+
+Original records: 692703
+Cleaned records: 619791
+Removed records: 72912
+
+Original columns: 79
+Cleaned columns: 79
+
+Invalid labels removed: 0
+Missing cells after cleaning: 0
+
+Cleaning operations:
+1. Column names normalized.
+2. Labels normalized.
+3. Positive and negative infinity values converted to missing values.
+4. Duplicate rows removed using row fingerprints.
+5. Missing numeric values imputed using chunk-level medians.
+
+IMPORTANT:
+The original raw dataset is preserved separately in HDFS.
+Duplicate detection uses hash fingerprints.
+Median imputation is performed per chunk, not globally.
+The cleaned dataset contains six traffic classes.
+
+Dataset scope:
+CIC-IDS2017 Wednesday traffic only.
