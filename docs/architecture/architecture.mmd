@@ -1,0 +1,72 @@
+flowchart LR
+
+    subgraph SOURCES["1. DATA SOURCES"]
+        direction TB
+        K["Security Events<br/>Synthetic Demo Data"]
+        F["Authentication Logs<br/>Synthetic Demo Data"]
+        M["MySQL Database<br/>cybersecurity_db<br/>Synthetic Demo Records"]
+        C["CIC-IDS2017<br/>Real Research Dataset"]
+    end
+
+    subgraph INGESTION["2. DATA INGESTION"]
+        direction TB
+        subgraph KAFKA["Kafka Pipeline"]
+            direction TB
+            KP["Apache Kafka<br/>security-logs topic"]
+            KC["Python Consumer"]
+            KP --> KC
+        end
+
+        FL["Apache Flume<br/>TAILDIR Source<br/>FILE Channel / HDFS Sink"]
+
+        SQ["Apache Sqoop<br/>MySQL Import"]
+
+        CL["Python / Pandas<br/>Data Cleaning"]
+    end
+
+    subgraph STORAGE["3. HADOOP DISTRIBUTED FILE SYSTEM (HDFS)"]
+        direction TB
+        RAW["RAW DATA<br/>/cybersecurity/raw/<br/><br/>Kafka<br/>Flume<br/>Sqoop<br/>CIC-IDS2017"]
+
+        PROC["PROCESSED DATA<br/>/cybersecurity/processed/<br/><br/>Cleaned CIC-IDS2017"]
+
+        REP["ANALYTICAL OUTPUT<br/>/cybersecurity/reports/<br/><br/>Analysis Reports<br/>Visualizations"]
+    end
+
+    subgraph ANALYSIS["4. DATA ANALYSIS"]
+        direction TB
+        AN["CIC-IDS2017<br/>Analysis"]
+        VIS["Reports and<br/>Visualizations"]
+        AN --> VIS
+    end
+
+    K --> KP
+    F --> FL
+    M --> SQ
+    C --> CL
+    C --> RAW
+
+    KC --> RAW
+    FL --> RAW
+    SQ --> RAW
+    CL --> PROC
+
+    RAW -->|"CIC-IDS2017"| AN
+    PROC --> AN
+    VIS --> REP
+
+    NOTE["Deployment: Single-node HDFS<br/>Replication factor: 1<br/>MapReduce: LocalJobRunner"]
+
+    STORAGE -.-> NOTE
+
+    classDef synthetic fill:#fff0d6,stroke:#d97706,color:#713f12
+    classDef real fill:#dcfce7,stroke:#16a34a,color:#14532d
+    classDef storage fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+    classDef processing fill:#f3e8ff,stroke:#9333ea,color:#581c87
+    classDef note fill:#f3f4f6,stroke:#6b7280,color:#374151
+
+    class K,F synthetic
+    class C real
+    class RAW,PROC,REP storage
+    class KP,KC,FL,SQ,CL,AN,VIS processing
+    class NOTE note
